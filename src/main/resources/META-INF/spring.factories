@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.pm.fireauthsdk.config.FirebaseConfig,\
+  com.pm.fireauthsdk.interceptor.AuthorizationInterceptor,\
+  com.pm.fireauthsdk.interceptor.InterceptorHelper,\
+  com.pm.fireauthsdk.FireAuthUtils,\
+  com.pm.fireauthsdk.config.WebInterceptorConfig
