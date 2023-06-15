@@ -8,6 +8,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,7 +32,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
                 String auth = request.getHeader(HttpHeaders.AUTHORIZATION);
                 if (auth == null || auth.isBlank()) {
                     response.setStatus(401);
-                    response.getWriter().write("Unauthorized user");
+//                    response.getWriter().write("Unauthorized user");
                     return false;
                 }
                 String token = auth.split(" ")[1];

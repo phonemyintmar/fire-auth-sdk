@@ -30,14 +30,16 @@ public class InterceptorHelper {
                 Object firebaseRoles = firebaseToken.getClaims().get("role");
                 if (firebaseRoles == null) {
                     response.setStatus(403);
-                    response.getWriter().write("Forbidden access");
+                    // just throw exception and catch with advice if you want to get custom error response
+                    // because this writer.write ka stirng kyee pyan tr, obj lote phoe so shote tl response.write.bytearray blah blah
+//                    response.getWriter().write("Forbidden access");
                     return false;
                 }
                 try {
                     roleList = (List<String>) firebaseToken.getClaims().get("role");
                 } catch (Exception e) {
                     response.setStatus(400);
-                    response.getWriter().write("Roles not in list format");
+//                    response.getWriter().write("Roles not in list format");
                     return false;
                 }
                 for (String userRolesInFirebase : roleList) {
@@ -48,14 +50,14 @@ public class InterceptorHelper {
                     }
                 }
                 response.setStatus(403);
-                response.getWriter().write("Forbidden access");
+//                response.getWriter().write("Forbidden access");
                 return false;
             }
             return true;
         } catch (FirebaseAuthException ex) {
             log.error("Wrong Token. Cause => {}", ex.getMessage());
             response.setStatus(401);
-            response.getWriter().write("Unauthorized user");
+//            response.getWriter().write("Unauthorized user");
             return false;
         }
     }
